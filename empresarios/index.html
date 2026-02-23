@@ -336,6 +336,28 @@
       margin-bottom: 16px;
     }
 
+    /* ===== PROVA SOCIAL TWO-COL ===== */
+    .prova-social-grid {
+      display: flex; flex-direction: column; gap: 40px; align-items: center;
+    }
+
+    .prova-social-text { text-align: center; }
+
+    .prova-social-image {
+      width: 100%; max-width: 420px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .prova-social-image img {
+      width: 100%; height: auto; border-radius: 16px; object-fit: cover;
+    }
+
+    @media (min-width: 960px) {
+      .prova-social-grid { flex-direction: row; gap: 60px; }
+      .prova-social-text { flex: 1; text-align: left; }
+      .prova-social-image { flex: 1; max-width: none; }
+    }
+
     /* ===== DARK SECTION ===== */
     .section-dark {
       background: #000; padding: var(--section-py-lg) 0;
@@ -856,11 +878,18 @@
 
     <!-- ===== PROVA SOCIAL ===== -->
     <section class="section-light fade-in">
-      <div class="container" style="max-width: 800px; text-align: center;">
-        <h2>MAIS DE <span class="accent counter-number" data-target="2206">0</span> <span class="accent">EMPRESÁRIOS E DIRETORES</span> JÁ SE <span class="accent">LIBERTARAM</span> DO CAOS OPERACIONAL</h2>
-        <div style="margin-top: 32px;">
-          <p class="subtitle-bold">Gestão com IA para quem cansou de apagar incêndios e jogar dinheiro no lixo</p>
-          <p>Milhares de empresas já economizam horas de trabalho manual com nossa plataforma de gestão inteligente.</p>
+      <div class="container">
+        <div class="prova-social-grid">
+          <div class="prova-social-text">
+            <h2>MAIS DE <span class="accent counter-number" data-target="2206">0</span> <span class="accent">EMPRESÁRIOS E DIRETORES</span> JÁ SE <span class="accent">LIBERTARAM</span> DO CAOS OPERACIONAL</h2>
+            <div style="margin-top: 32px;">
+              <p class="subtitle-bold">Gestão com IA para quem cansou de apagar incêndios e jogar dinheiro no lixo</p>
+              <p>Milhares de empresas já economizam horas de trabalho manual com nossa plataforma de gestão inteligente.</p>
+            </div>
+          </div>
+          <div class="prova-social-image">
+            <img src="lata-lixo.avif" alt="Dinheiro desperdiçado" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
