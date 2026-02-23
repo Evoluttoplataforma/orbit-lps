@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit Gestão | Gestão de Elite para o seu Negócio</title>
+  <meta name="description" content="Plataforma brasileira de gestão de processos e qualidade com IA. Do plano do CEO à execução da operação. Indicadores em tempo real, metas desdobradas e integração WhatsApp.">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W6H3729J');</script>
+  <!-- End Google Tag Manager -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #000000;
+      color: #ffffff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    :root {
+      --primary: #FDB73F;
+      --primary-dark: #e5a235;
+      --primary-light: #fdc55f;
+      --primary-bg: rgba(253, 183, 63, 0.1);
+      --cta-green: #25D366;
+      --cta-green-dark: #1fb855;
+      --bg: #000000;
+      --bg-alt: #0a0a0a;
+      --surface: rgba(13, 13, 13, 0.8);
+      --surface-hover: rgba(34, 34, 34, 0.8);
+      --text: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.9);
+      --text-muted: #cccccc;
+      --text-placeholder: #999999;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.05);
+      --input-bg: rgba(187, 187, 187, 0.15);
+      --gray-mid: #767676;
+      --success: #25D366;
+      --error: #ef4444;
+
+      --section-py: 80px;
+      --section-py-lg: 120px;
+      --container-px: 20px;
+      --max-width: 1200px;
+      --max-width-narrow: 720px;
+
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.5);
+      --shadow-xl: 0 24px 64px rgba(0,0,0,0.6);
+      --shadow-primary: 0 8px 32px rgba(253, 183, 63, 0.2);
+
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.15s ease;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-px);
+    }
+
+    .container-narrow {
+      max-width: var(--max-width-narrow);
+      margin: 0 auto;
+      padding: 0 var(--container-px);
+    }
+
+    main, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      background: rgba(0, 0, 0, 0.85);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar-logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .navbar-logo-text span {
+      color: var(--primary);
+    }
+
+    .navbar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+      background: var(--primary-bg);
+      color: var(--primary);
+      border: 1px solid rgba(253, 183, 63, 0.2);
+    }
+
+    .navbar-cta {
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #000;
+      background: var(--cta-green);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      display: none;
+    }
+
+    .navbar-cta.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .navbar-cta:hover {
+      background: var(--cta-green-dark);
+      transform: translateY(-1px);
+    }
+
+    @media (min-width: 768px) {
+      .navbar-cta {
+        display: inline-flex;
+      }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 140px 0 var(--section-py);
+      position: relative;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-split {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin: 0 0 24px;
+    }
+
+    .hero h1 .accent {
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0 0 40px;
+    }
+
+    .hero-form {
+      width: 100%;
+    }
+
+    @media (min-width: 960px) {
+      .hero-split {
+        flex-direction: row;
+        align-items: center;
+        gap: 48px;
+      }
+      .hero-content {
+        flex: 1;
+        min-width: 0;
+        text-align: left;
+      }
+      .hero-form {
+        flex: 0 0 440px;
+        width: 440px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero-split {
+        gap: 64px;
+      }
+      .hero-form {
+        flex: 0 0 480px;
+        width: 480px;
+      }
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 18px 40px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      background: var(--cta-green);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 0 30px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-cta:hover {
+      background: var(--cta-green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(37, 211, 102, 0.4), 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .btn-cta:active {
+      transform: translateY(0);
+    }
+
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 28px;
+      max-width: 100%;
+      margin: 0 auto;
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+    }
+
+    .form-card h3 {
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--input-bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: var(--transition-fast);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    .form-group select option {
+      background: #111;
+      color: #fff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-bg);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-placeholder);
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 18px 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      background: var(--cta-green);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 0 30px rgba(37, 211, 102, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      background: var(--cta-green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(37, 211, 102, 0.4), 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== PITCH SECTION ===== */
+    .pitch {
+      padding: var(--section-py-lg) 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .pitch h1 {
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto 24px;
+    }
+
+    .pitch h1 .accent {
+      color: var(--primary);
+    }
+
+    .video-wrapper {
+      max-width: 860px;
+      margin: 0 auto 48px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pitch p {
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      padding: var(--section-py) 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--primary-bg);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      margin-bottom: 20px;
+      border: 1px solid rgba(253, 183, 63, 0.15);
+    }
+
+    .section-header h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(253, 183, 63, 0.3);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials {
+      padding: var(--section-py-lg) 0;
+      position: relative;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .testimonial-card {
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid var(--border);
+      background: radial-gradient(50% 75% at 98.9% 100%, rgba(253, 183, 63, 0.12) 0%, rgba(13,13,13,0.8) 84%);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(253, 183, 63, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .testimonial-stars {
+      color: var(--primary);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #000;
+      flex-shrink: 0;
+    }
+
+    .testimonial-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .testimonial-role {
+      font-size: 13px;
+      color: var(--gray-mid);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 32px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer p {
+      font-size: 13px;
+      color: var(--gray-mid);
+      margin-bottom: 8px;
+    }
+
+    .footer a {
+      color: var(--text-muted);
+      font-size: 13px;
+      transition: var(--transition-fast);
+    }
+
+    .footer a:hover {
+      color: var(--primary);
+    }
+
+    /* ===== FORM FEEDBACK ===== */
+    .form-success {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .form-success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--success);
+      color: white;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .form-success h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .form-success p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .form-error {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--error);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-top: 12px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ===== BACKGROUND EFFECTS ===== */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow--hero {
+      background: #FDB73F;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.1;
+    }
+
+    .bg-glow--bottom {
+      background: #FDB73F;
+      bottom: -300px;
+      right: -100px;
+      opacity: 0.06;
+    }
+
+    /* ===== FADE-IN SYSTEM ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.25s; }
+    .fade-in-delay-3 { transition-delay: 0.4s; }
+    .fade-in-delay-4 { transition-delay: 0.55s; }
+    .fade-in-delay-5 { transition-delay: 0.7s; }
+    .fade-in-delay-6 { transition-delay: 0.85s; }
+
+    /* ===== GRADIENT TEXT ===== */
+    .text-gradient {
+      background: linear-gradient(135deg, #F0F0F5, #9494A8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: #F0F0F5;
+    }
+
+    /* ===== TYPEWRITER ===== */
+    .typewriter {
+      display: block;
+      overflow: hidden;
+      white-space: normal;
+      border-right: 3px solid var(--primary);
+      width: 0;
+      animation: blink-caret 0.7s step-end infinite;
+    }
+
+    @media (min-width: 600px) {
+      .typewriter {
+        white-space: nowrap;
+      }
+    }
+
+    .typewriter.typing {
+      animation: blink-caret 0.7s step-end infinite;
+    }
+
+    .typewriter.done {
+      border-right-color: transparent;
+      animation: none;
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: var(--primary); }
+      50% { border-color: transparent; }
+    }
+
+    .hero-subtitle {
+      display: block;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .hero-subtitle.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== BADGE PULSE ===== */
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(253,183,63,0.2); }
+      50% { border-color: rgba(253,183,63,0.5); }
+    }
+
+    .navbar-badge {
+      animation: pulse-border 3s ease-in-out infinite;
+    }
+
+    /* ===== FEATURE CARDS — SPINNING BORDER ===== */
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, rgba(253,183,63,0.6), transparent 30%, transparent 70%, rgba(253,183,63,0.6));
+      animation: spin-border 4s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .feature-card:hover::before {
+      opacity: 0.7;
+    }
+
+    @keyframes spin-border {
+      to { transform: translate(-50%,-50%) rotate(360deg); }
+    }
+
+    .feature-card-inner {
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
+      border-radius: calc(var(--radius-lg) - 1px);
+      padding: 32px 24px;
+      height: 100%;
+    }
+
+    /* ===== FEATURE CARDS — BORDER SLIDE ON HOVER ===== */
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      background-size: 200% 100%;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: border-slide 3s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes border-slide {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .feature-card:hover::after {
+      opacity: 1;
+    }
+
+    /* ===== FEATURE CARDS — MOUSE GLOW ===== */
+    .feature-card .card-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(253,183,63,0.08), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .feature-card:hover .card-glow {
+      opacity: 1;
+    }
+
+    /* ===== SHIMMER ON FORM CARD ===== */
+    .form-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(253,183,63,0.04), transparent);
+      animation: note-shimmer 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes note-shimmer {
+      0%, 100% { opacity: 0; transform: translateX(-100%); }
+      50% { opacity: 1; transform: translateX(100%); }
+    }
+
+    .form-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== VIDEO WRAPPER GLOW ===== */
+    .video-wrapper {
+      position: relative;
+    }
+
+    .pitch {
+      overflow: hidden;
+    }
+
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse at center, rgba(253,183,63,0.12), transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ===== COUNTER ===== */
+    .counter-number {
+      display: inline;
+    }
+
+    /* ===== MOBILE PERFORMANCE ===== */
+    @media (max-width: 768px) {
+      .feature-card::before {
+        display: none;
+      }
+    }
+
+    /* ===== SMALL SCREEN FIXES ===== */
+    @media (max-width: 480px) {
+      .navbar-badge {
+        display: none;
+      }
+
+      .btn-cta {
+        padding: 16px 24px;
+        font-size: 14px;
+        width: 100%;
+      }
+
+      .bg-glow {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    @media (min-width: 768px) {
+      :root {
+        --section-py: 100px;
+        --container-px: 32px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --section-py: 120px;
+        --container-px: 40px;
+      }
+    }
+
+    /* Safe area for notched devices */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .footer {
+        padding-bottom: calc(32px + env(safe-area-inset-bottom));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6H3729J"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- ===== BACKGROUND EFFECTS ===== -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow--hero"></div>
+  <div class="bg-glow bg-glow--bottom"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <span class="navbar-logo-text"><span>Orbit</span> Gestão</span>
+        <span class="navbar-badge">Líder em Gestão de Processos</span>
+      </div>
+      <a href="#formulario" class="navbar-cta">Quero mais informações</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ===== HERO (texto + formulário) ===== -->
+    <section class="hero" id="formulario">
+      <div class="container">
+        <div class="hero-split">
+          <div class="hero-content">
+            <h1 class="fade-in">
+              <span class="typewriter accent" id="typewriter"></span>
+              <span class="hero-subtitle text-gradient">ESPERANDO PELO SEU NEGÓCIO!</span>
+            </h1>
+            <p class="fade-in fade-in-delay-1">Pare de gerir pelo retrovisor. Visualize indicadores em tempo real e desdobre metas do CEO à execução com o Orbit IA.</p>
+          </div>
+
+          <div class="hero-form">
+            <div class="form-card fade-in fade-in-delay-2">
+              <h3>Dar o próximo passo leva menos de um minuto</h3>
+              <form id="lead-form" method="POST">
+                <div class="form-group">
+                  <label for="name">Qual é o seu nome?</label>
+                  <input type="text" id="name" name="name" placeholder="Seu nome completo" required autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Qual o seu e-mail corporativo?</label>
+                  <input type="email" id="email" name="email" placeholder="seu@empresa.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Qual o seu telefone?</label>
+                  <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required autocomplete="tel">
+                </div>
+
+                <div class="form-group">
+                  <label for="company">Nome da empresa</label>
+                  <input type="text" id="company" name="company" placeholder="Nome da sua empresa" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="employees">Quantos funcionários sua empresa tem?</label>
+                  <select id="employees" name="employees" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="1-10">1 a 10</option>
+                    <option value="11-50">11 a 50</option>
+                    <option value="51-200">51 a 200</option>
+                    <option value="201-500">201 a 500</option>
+                    <option value="500+">Mais de 500</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="revenue">Qual a faixa de faturamento mensal da sua empresa?</label>
+                  <select id="revenue" name="revenue" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="ate-50k">Até R$ 50 mil</option>
+                    <option value="50k-200k">R$ 50 mil a R$ 200 mil</option>
+                    <option value="200k-500k">R$ 200 mil a R$ 500 mil</option>
+                    <option value="500k-1m">R$ 500 mil a R$ 1 milhão</option>
+                    <option value="1m-5m">R$ 1 milhão a R$ 5 milhões</option>
+                    <option value="5m+">Acima de R$ 5 milhões</option>
+                  </select>
+                </div>
+
+                <!-- UTMs ocultas -->
+                <input type="hidden" name="utm_source" data-field-id="utm_source">
+                <input type="hidden" name="utm_medium" data-field-id="utm_medium">
+                <input type="hidden" name="utm_campaign" data-field-id="utm_campaign">
+                <input type="hidden" name="utm_content" data-field-id="utm_content">
+                <input type="hidden" name="utm_term" data-field-id="utm_term">
+
+                <!-- Click IDs ocultos -->
+                <input type="hidden" name="gclid" data-field-id="gclid">
+                <input type="hidden" name="fbclid" data-field-id="fbclid">
+                <input type="hidden" name="gbraid" data-field-id="gbraid">
+                <input type="hidden" name="wbraid" data-field-id="wbraid">
+                <input type="hidden" name="ttclid" data-field-id="ttclid">
+                <input type="hidden" name="gad_campaignid" data-field-id="gad_campaignid">
+                <input type="hidden" name="gad_source" data-field-id="gad_source">
+                <input type="hidden" name="msclkid" data-field-id="msclkid">
+                <input type="hidden" name="li_fat_id" data-field-id="li_fat_id">
+                <input type="hidden" name="sck" data-field-id="sck">
+
+                <!-- Dados de sessão -->
+                <input type="hidden" name="session_id" id="hidden_session_id">
+                <input type="hidden" name="landing_page" data-field-id="landing_page">
+                <input type="hidden" name="origin_page" data-field-id="origin_page">
+                <input type="hidden" name="session_attributes_encoded" data-field-id="session_attributes_encoded">
+
+                <button type="submit" class="btn-submit">RECEBER MAIS INFORMAÇÕES</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PITCH ===== -->
+    <section class="pitch fade-in">
+      <div class="container">
+        <h1>O Orbit é o <span class="accent">sistema nervoso central</span> do seu negócio: do plano do CEO à execução da operação.</h1>
+        <p>Criamos a primeira plataforma brasileira especializada em gestão de processos e qualidade com IA, feita por quem realmente entende do assunto.</p>
+        <div class="video-wrapper">
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1120652113?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Demonstração Mini Orbit"></iframe></div>
+        </div>
+        <a href="#formulario" class="btn-cta">QUERO MAIS INFORMAÇÕES →</a>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="features">
+      <div class="container">
+        <div class="section-header fade-in">
+          <span class="eyebrow">O que você recebe</span>
+          <h2>Tudo que importa para sair do plano para a execução</h2>
+          <p>Sem excesso. Só o que gera resultado: plano → tarefas, processos → indicadores, pessoas → performance.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card fade-in fade-in-delay-1" data-tilt>
+            <div class="card-glow"></div>
+            <div class="feature-card-inner">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#FDB73F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="#FDB73F"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+              </div>
+              <h3>Planejamento Estratégico com IA</h3>
+              <p>Da visão ao plano tático com tarefas sugeridas automaticamente.</p>
+            </div>
+          </div>
+
+          <div class="feature-card fade-in fade-in-delay-2" data-tilt>
+            <div class="card-glow"></div>
+            <div class="feature-card-inner">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <h3>Gestão de Tarefas</h3>
+              <p>Execução conectada ao plano. Responsáveis, prazos e priorização.</p>
+            </div>
+          </div>
+
+          <div class="feature-card fade-in fade-in-delay-3" data-tilt>
+            <div class="card-glow"></div>
+            <div class="feature-card-inner">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <h3>Integração WhatsApp</h3>
+              <p>Consultas e alertas direto no WhatsApp de forma segura.</p>
+            </div>
+          </div>
+
+          <div class="feature-card fade-in fade-in-delay-4" data-tilt>
+            <div class="card-glow"></div>
+            <div class="feature-card-inner">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#8b9fad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg>
+              </div>
+              <h3>Mapeamento de Processos</h3>
+              <p>Processos principais e de apoio, documentos e instruções de trabalho.</p>
+            </div>
+          </div>
+
+          <div class="feature-card fade-in fade-in-delay-5" data-tilt>
+            <div class="card-glow"></div>
+            <div class="feature-card-inner">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#6ea8fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Cargos e Equipes</h3>
+              <p>Papéis claros, trilhas por cargo e onboarding guiado e muito mais.</p>
+            </div>
+          </div>
+
+          <div class="feature-card fade-in fade-in-delay-6" data-tilt>
+            <div class="card-glow"></div>
+            <div class="feature-card-inner">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9" rx="1" fill="#25D366" stroke="#25D366"/><rect x="10" y="7" width="4" height="14" rx="1" fill="#FDB73F" stroke="#FDB73F"/><rect x="17" y="3" width="4" height="18" rx="1" fill="#6ea8fe" stroke="#6ea8fe"/></svg>
+              </div>
+              <h3>Indicadores (KPIs)</h3>
+              <p>Indicadores amarrados aos processos, metas e alertas inteligentes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 56px;" class="fade-in">
+          <a href="#formulario" class="btn-cta">QUERO MAIS INFORMAÇÕES →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Mais de <span class="counter-number" data-target="2206" style="color: var(--primary);">0</span> cases de sucesso registrados</h2>
+          <p>Projetos com resultados acima da média são transformados em cases de sucesso.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card fade-in fade-in-delay-1">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"A Orbit acabou com o 'achismo' na diretoria. Hoje decidimos com base em dados reais e ROI. Essencial para nossa escala."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SL</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">Sergio Lemos</span>
+                <span class="testimonial-role">CEO da Marketa</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-in fade-in-delay-2">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"A Orbit é o meu checklist. Ela garante que nenhum processo saia dos trilhos e que a entrega seja impecável sempre."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">DA</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">Daniela Albuquerque</span>
+                <span class="testimonial-role">Gerente de Qualidade</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-in fade-in-delay-3">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Segurança total nos números. Tenho visão clara do lucro e das oportunidades sem precisar microgerenciar ninguém."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MV</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">Marcelo Valente</span>
+                <span class="testimonial-role">Diretor Financeiro</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-in fade-in-delay-4">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Consulto a Orbit antes de qualquer decisão importante. É o mapa que guia nossa estratégia para o crescimento."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">GF</div>
+              <div class="testimonial-info">
+                <span class="testimonial-name">Gabi Ferreira</span>
+                <span class="testimonial-role">Sócia-Diretora</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 56px;" class="fade-in">
+          <a href="#formulario" class="btn-cta">QUERO MAIS INFORMAÇÕES →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>2025 &copy; Orbit Gestão. Todos os direitos reservados.</p>
+      <a href="#">Políticas de Privacidade</a>
+    </div>
+  </footer>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
+  <!-- ===== TRACKING SCRIPT ===== -->
+  <script>
+  (function() {
+
+    // ============================================
+    // CONFIGURAÇÃO
+    // ============================================
+    var DOMAIN      = '.orbitgestao.com.br';
+    var MAX_AGE     = 63072000;
+    var WEBHOOK_URL = 'https://hook.us1.make.com/ferpj2xzygk9osy6eu31ioer526msrhw';
+
+    var utms   = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+    var clicks = ['gclid','gbraid','wbraid','fbclid','ttclid','gad_campaignid','gad_source','msclkid','li_fat_id','twclid','sck'];
+
+    // ── Helpers ──────────────────────────────────────────────────────
+
+    function getCookie(name) {
+      var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    function setCookie(name, value) {
+      document.cookie = name + '=' + encodeURIComponent(value)
+        + ';max-age=' + MAX_AGE
+        + ';path=/;domain=' + DOMAIN
+        + ';SameSite=None;Secure';
+    }
+
+    function setCookieFirstTouch(name, value) {
+      if (getCookie(name)) return;
+      setCookie(name, value);
+    }
+
+    function getParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    function isInternalReferrer(referrer) {
+      if (!referrer) return false;
+      try {
+        var ref = new URL(referrer).hostname;
+        var cur = window.location.hostname;
+        return ref === cur
+          || ref.endsWith('.' + cur.replace('www.',''))
+          || cur.endsWith('.' + ref.replace('www.',''));
+      } catch(e) { return false; }
+    }
+
+    // ── Session ID ───────────────────────────────────────────────────
+
+    var sessionId = (function() {
+      try {
+        var key = 'lp_session_id';
+        var s = sessionStorage.getItem(key);
+        if (!s) {
+          s = Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          sessionStorage.setItem(key, s);
+        }
+        return s;
+      } catch(e) {
+        return Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      }
+    })();
+
+    // ── Referrer Mapping ─────────────────────────────────────────────
+
+    var referrerMap = {
+      'google.com':        { utm_source: 'google',       utm_medium: 'organic' },
+      'bing.com':          { utm_source: 'bing',         utm_medium: 'organic' },
+      'yahoo.com':         { utm_source: 'yahoo',        utm_medium: 'organic' },
+      'duckduckgo.com':    { utm_source: 'duckduckgo',   utm_medium: 'organic' },
+      'yandex.com':        { utm_source: 'yandex',       utm_medium: 'organic' },
+      'instagram.com':     { utm_source: 'instagram',    utm_medium: 'organic' },
+      'youtube.com':       { utm_source: 'youtube',      utm_medium: 'organic' },
+      'facebook.com':      { utm_source: 'facebook',     utm_medium: 'organic' },
+      'twitter.com':       { utm_source: 'twitter',      utm_medium: 'organic' },
+      'x.com':             { utm_source: 'twitter',      utm_medium: 'organic' },
+      'linkedin.com':      { utm_source: 'linkedin',     utm_medium: 'organic' },
+      'tiktok.com':        { utm_source: 'tiktok',       utm_medium: 'organic' },
+      'pinterest.com':     { utm_source: 'pinterest',    utm_medium: 'organic' },
+      'whatsapp.com':      { utm_source: 'whatsapp',     utm_medium: 'organic' },
+      'telegram.org':      { utm_source: 'telegram',     utm_medium: 'organic' },
+      'reddit.com':        { utm_source: 'reddit',       utm_medium: 'organic' },
+      'chat.openai.com':   { utm_source: 'chatgpt',      utm_medium: 'ai' },
+      'chatgpt.com':       { utm_source: 'chatgpt',      utm_medium: 'ai' },
+      'gemini.google.com': { utm_source: 'gemini',       utm_medium: 'ai' },
+      'claude.ai':         { utm_source: 'claude',       utm_medium: 'ai' },
+      'poe.com':           { utm_source: 'poe',          utm_medium: 'ai' },
+      'wikipedia.org':     { utm_source: 'wikipedia',    utm_medium: 'referral' },
+      'github.com':        { utm_source: 'github',       utm_medium: 'referral' }
+    };
+
+    // ── 1. UTMs da URL — first touch ─────────────────────────────────
+
+    var hasUtmInUrl = utms.some(function(p) { return !!getParam(p); });
+
+    if (hasUtmInUrl) {
+      utms.forEach(function(p) {
+        var val = getParam(p) || '';
+        setCookieFirstTouch(p, val);
+      });
+    } else {
+      var referrer = document.referrer || '';
+      if (referrer && !isInternalReferrer(referrer)) {
+        for (var domain in referrerMap) {
+          if (referrer.indexOf(domain) !== -1) {
+            var map = referrerMap[domain];
+            utms.forEach(function(p) {
+              setCookieFirstTouch(p, map[p] || '');
+            });
+            break;
+          }
+        }
+      }
+    }
+
+    // ── 2. Click params — first touch ────────────────────────────────
+
+    clicks.forEach(function(p) {
+      var val = getParam(p);
+      if (val) setCookieFirstTouch(p, val);
+    });
+
+    // ── 3. Gera _fbc se veio fbclid ──────────────────────────────────
+
+    var fbclid = getParam('fbclid');
+    if (fbclid && !getCookie('_fbc')) {
+      setCookie('_fbc', 'fb.1.' + Date.now() + '.' + fbclid);
+    }
+
+    // ── 4. First visit, landing page, origin page ─────────────────────
+
+    if (!getCookie('first_visit')) {
+      setCookie('first_visit', new Date().toISOString());
+    }
+
+    if (!getCookie('landing_page')) {
+      setCookie('landing_page', window.location.href);
+    }
+
+    if (!getCookie('origin_page')) {
+      var originRef = document.referrer || '';
+      if (originRef && !isInternalReferrer(originRef)) {
+        setCookie('origin_page', originRef);
+      }
+    }
+
+    // ── 5. Ref param ─────────────────────────────────────────────────
+
+    var refParam = getParam('ref');
+    if (refParam && !getCookie('ref')) {
+      setCookie('ref', refParam);
+    }
+
+    // ── 6. User Agent cookie ──────────────────────────────────────────
+
+    setCookie('user_agent', navigator.userAgent);
+
+    // ── 7. Session attributes encoded ────────────────────────────────
+
+    var sessionAttrs = {
+      utm_source:    getCookie('utm_source') || '',
+      utm_medium:    getCookie('utm_medium') || '',
+      utm_campaign:  getCookie('utm_campaign') || '',
+      utm_content:   getCookie('utm_content') || '',
+      utm_term:      getCookie('utm_term') || '',
+      gclid:         getCookie('gclid') || '',
+      fbclid:        getCookie('fbclid') || '',
+      ttclid:        getCookie('ttclid') || '',
+      msclkid:       getCookie('msclkid') || '',
+      landing_page:  getCookie('landing_page') || '',
+      origin_page:   getCookie('origin_page') || '',
+      first_visit:   getCookie('first_visit') || '',
+      ref:           getCookie('ref') || ''
+    };
+    try {
+      setCookie('session_attributes_encoded', btoa(JSON.stringify(sessionAttrs)));
+    } catch(e) {}
+
+    // ── 8. Preenche hidden inputs do form ────────────────────────────
+
+    utms.concat(clicks).forEach(function(p) {
+      var val = getCookie(p);
+      if (!val) return;
+      document.querySelectorAll(
+        'input[name="' + p + '"], input[data-field-id="' + p + '"]'
+      ).forEach(function(f) { f.value = val; });
+    });
+
+    var sessionIdInput = document.getElementById('hidden_session_id');
+    if (sessionIdInput) sessionIdInput.value = sessionId;
+
+    var lpInput = document.querySelector('input[data-field-id="landing_page"]');
+    if (lpInput) lpInput.value = getCookie('landing_page') || window.location.href;
+
+    var opInput = document.querySelector('input[data-field-id="origin_page"]');
+    if (opInput) opInput.value = getCookie('origin_page') || document.referrer || '';
+
+    var saeInput = document.querySelector('input[data-field-id="session_attributes_encoded"]');
+    if (saeInput) saeInput.value = getCookie('session_attributes_encoded') || '';
+
+    // ── 9. DataLayer ─────────────────────────────────────────────────
+
+    window.dataLayer = window.dataLayer || [];
+    var dl = {};
+
+    utms.concat(clicks).forEach(function(p) {
+      var val = getCookie(p);
+      if (val) dl['ft_' + p] = val;
+    });
+
+    utms.forEach(function(p) {
+      var fromUrl = getParam(p);
+      if (fromUrl) {
+        dl[p] = fromUrl;
+      } else {
+        var ref = document.referrer;
+        var detected = null;
+        if (ref) {
+          for (var d in referrerMap) {
+            if (ref.indexOf(d) !== -1) { detected = referrerMap[d]; break; }
+          }
+        }
+        if (detected && p === 'utm_source') dl[p] = detected.utm_source;
+        else if (detected && p === 'utm_medium') dl[p] = detected.utm_medium;
+        else dl[p] = getCookie(p) || '';
+      }
+    });
+
+    clicks.forEach(function(p) {
+      var fromUrl = getParam(p);
+      dl[p] = fromUrl || getCookie(p) || '';
+    });
+
+    dl.session_id = sessionId;
+    dl.landing_page = getCookie('landing_page') || '';
+    dl.origin_page = getCookie('origin_page') || '';
+    dl.first_visit = getCookie('first_visit') || '';
+    dl.ref = getCookie('ref') || '';
+    dl.user_agent = navigator.userAgent;
+    dl.session_attributes_encoded = getCookie('session_attributes_encoded') || '';
+
+    if (Object.keys(dl).length) window.dataLayer.push(dl);
+
+    window.dataLayer.push({
+      event:         'custom_page_view',
+      session_id:    sessionId,
+      page_url:      window.location.href,
+      page_path:     window.location.pathname,
+      page_hostname: window.location.hostname,
+      referrer:      document.referrer || ''
+    });
+
+    // ── 10. Scroll Depth ─────────────────────────────────────────────
+
+    (function() {
+      var milestones = [25, 50, 75, 90];
+      var reached = {};
+      var pageStart = Date.now();
+
+      function getScrollPercent() {
+        var doc = document.documentElement;
+        var body = document.body;
+        var scrollTop = doc.scrollTop || body.scrollTop;
+        var scrollHeight = Math.max(doc.scrollHeight, body.scrollHeight) - doc.clientHeight;
+        if (scrollHeight <= 0) return 100;
+        return Math.round((scrollTop / scrollHeight) * 100);
+      }
+
+      window.addEventListener('scroll', function() {
+        var pct = getScrollPercent();
+        milestones.forEach(function(m) {
+          if (!reached[m] && pct >= m) {
+            reached[m] = true;
+            var timeOnPage = Math.round((Date.now() - pageStart) / 1000);
+            window.dataLayer.push({
+              event:        'scroll_depth',
+              session_id:    sessionId,
+              scroll_depth:  m,
+              time_on_page:  timeOnPage,
+              page_path:     window.location.pathname
+            });
+          }
+        });
+      }, { passive: true });
+    })();
+
+    // ── 11. Time on Page Heartbeat ───────────────────────────────────
+
+    (function() {
+      var pageStart = Date.now();
+      var heartbeatCount = 0;
+
+      document.addEventListener('submit', function() {
+        var timeOnPage = Math.round((Date.now() - pageStart) / 1000);
+        window.dataLayer.push({
+          session_id: sessionId,
+          time_on_page_at_submit: timeOnPage
+        });
+      }, true);
+
+      var hb = setInterval(function() {
+        heartbeatCount++;
+        var timeOnPage = Math.round((Date.now() - pageStart) / 1000);
+        window.dataLayer.push({
+          event:       'time_on_page_heartbeat',
+          session_id:   sessionId,
+          time_on_page: timeOnPage,
+          heartbeat:    heartbeatCount,
+          page_path:    window.location.pathname
+        });
+        if (heartbeatCount >= 20) clearInterval(hb);
+      }, 30000);
+    })();
+
+    // ── 12. Form Submit Handler ──────────────────────────────────────
+
+    var form = document.getElementById('lead-form');
+    if (form) {
+      var formPageStart = Date.now();
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var btn = form.querySelector('button[type="submit"]');
+        var originalText = btn.textContent;
+        btn.textContent = 'Enviando...';
+        btn.disabled = true;
+
+        var nameField = form.querySelector('input[name="name"]');
+        var emailField = form.querySelector('input[name="email"]');
+        var phoneField = form.querySelector('input[name="phone"]');
+
+        var leadName = nameField ? nameField.value.trim() : '';
+        var leadEmail = emailField ? emailField.value.trim() : '';
+        var leadPhone = phoneField ? phoneField.value.trim().replace(/\D/g, '') : '';
+
+        var nameParts = leadName.split(' ');
+        var firstName = nameParts[0] || '';
+        var lastName = nameParts.slice(1).join(' ') || '';
+
+        window.dataLayer.push({
+          event: 'form_submit',
+          session_id: sessionId,
+          lead_name: leadName,
+          lead_email: leadEmail,
+          lead_phone: leadPhone,
+          lead_first_name: firstName,
+          lead_last_name: lastName,
+          time_on_page_at_submit: Math.round((Date.now() - formPageStart) / 1000)
+        });
+
+        var formData = new FormData(form);
+        var payload = {};
+        formData.forEach(function(value, key) {
+          if (value) payload[key] = value;
+        });
+
+        payload.first_name = firstName;
+        payload.last_name = lastName;
+        payload.session_id = sessionId;
+        payload.page_url = window.location.href;
+        payload.page_path = window.location.pathname;
+        payload.referrer = document.referrer || '';
+        payload.submitted_at = new Date().toISOString();
+
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function() {
+          window.location.href = '/empresarios/obrigado';
+        })
+        .catch(function(error) {
+          console.error('[Form] Webhook erro (dados salvos no dataLayer):', error);
+          window.location.href = '/empresarios/obrigado';
+        });
+      });
+    }
+
+    // ── 13. Máscara de Telefone ──────────────────────────────────────
+
+    var phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function(e) {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+      });
+    }
+
+    // ── 15. Scroll Reveal Animation (fade-in system) ─────────────────
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+      observer.observe(el);
+    });
+
+    // ── 16. 3D Tilt on Feature Cards (desktop only) ─────────────────
+
+    if (window.innerWidth > 768) {
+      document.querySelectorAll('[data-tilt]').forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+          var r = card.getBoundingClientRect();
+          var x = e.clientX - r.left;
+          var y = e.clientY - r.top;
+          var rotateX = ((y - r.height / 2) / r.height * 2) * -6;
+          var rotateY = ((x - r.width / 2) / r.width * 2) * 6;
+          card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-6px)';
+          card.style.setProperty('--mouse-x', (x / r.width * 100).toFixed(1) + '%');
+          card.style.setProperty('--mouse-y', (y / r.height * 100).toFixed(1) + '%');
+        });
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = '';
+          card.style.setProperty('--mouse-x', '50%');
+          card.style.setProperty('--mouse-y', '50%');
+        });
+      });
+    }
+
+    // ── 17. Animated Counter ─────────────────────────────────────────
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    document.querySelectorAll('.counter-number').forEach(function(el) {
+      var target = parseInt(el.getAttribute('data-target'), 10);
+      var duration = 2000;
+      var started = false;
+
+      var counterObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            var startTime = null;
+            function animate(now) {
+              if (!startTime) startTime = now;
+              var progress = Math.min((now - startTime) / duration, 1);
+              var value = Math.floor(easeOutCubic(progress) * target);
+              el.textContent = '+' + value.toLocaleString('pt-BR');
+              if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      counterObserver.observe(el);
+    });
+
+    // ── 18. Typewriter Effect ────────────────────────────────────────
+
+    (function() {
+      var el = document.getElementById('typewriter');
+      if (!el) return;
+      var text = 'EXISTE UMA GESTÃO DE ELITE';
+      var i = 0;
+      var speed = 60;
+
+      el.classList.add('typing');
+
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          el.style.width = 'auto';
+          i++;
+          setTimeout(type, speed);
+        } else {
+          el.classList.remove('typing');
+          el.classList.add('done');
+          var subtitle = document.querySelector('.hero-subtitle');
+          if (subtitle) subtitle.classList.add('visible');
+        }
+      }
+
+      setTimeout(type, 600);
+    })();
+
+    // ── 19. Navbar CTA — show on scroll past hero ────────────────────
+
+    (function() {
+      var navCta = document.querySelector('.navbar-cta');
+      var hero = document.querySelector('.hero');
+      if (!navCta || !hero) return;
+
+      var navObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            navCta.classList.remove('visible');
+          } else {
+            navCta.classList.add('visible');
+          }
+        });
+      }, { threshold: 0 });
+
+      navObserver.observe(hero);
+    })();
+
+  })();
+  </script>
+
+</body>
+</html>
