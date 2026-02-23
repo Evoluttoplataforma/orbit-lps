@@ -149,16 +149,23 @@
     /* ===== HERO ===== */
     .hero {
       padding: 140px 0 var(--section-py);
-      position: relative; text-align: center;
+      position: relative;
     }
 
     .hero .container { position: relative; z-index: 1; }
 
+    .hero-split {
+      display: flex; flex-direction: column;
+      gap: 48px; align-items: center;
+    }
+
+    .hero-content { text-align: center; }
+
     .hero h1 {
-      font-size: clamp(28px, 5vw, 52px);
+      font-size: clamp(28px, 5vw, 48px);
       font-weight: 900; line-height: 1.1;
       letter-spacing: -0.03em; color: var(--text);
-      margin: 0 auto 24px; max-width: 900px;
+      margin: 0 0 24px;
     }
 
     .hero h1 .accent { color: var(--primary); }
@@ -166,7 +173,26 @@
     .hero p {
       font-size: clamp(16px, 2vw, 20px);
       line-height: 1.6; color: var(--text-secondary);
-      margin: 0 auto 40px; max-width: 680px;
+      margin: 0 0 40px;
+    }
+
+    .hero-form { width: 100%; }
+
+    @media (min-width: 960px) {
+      .hero-split {
+        flex-direction: row; align-items: center; gap: 48px;
+      }
+      .hero-content {
+        flex: 1; min-width: 0; text-align: left;
+      }
+      .hero-form {
+        flex: 0 0 440px; width: 440px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero-split { gap: 64px; }
+      .hero-form { flex: 0 0 480px; width: 480px; }
     }
 
     .btn-cta {
@@ -188,11 +214,6 @@
     }
 
     .btn-cta:active { transform: translateY(0); }
-
-    /* ===== FORM SECTION ===== */
-    .form-section {
-      padding: var(--section-py) 0;
-    }
 
     .form-card {
       background: var(--surface);
@@ -607,84 +628,82 @@
   </nav>
 
   <main>
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="topo">
+    <!-- ===== HERO (texto + formulário) ===== -->
+    <section class="hero" id="formulario">
       <div class="container">
-        <h1 class="fade-in">
-          TRANSFORME <span class="accent">SUA CONSULTORIA</span> EM UMA MÁQUINA DE RECEITA <span class="accent">RECORRENTE!</span>
-        </h1>
-        <p class="fade-in fade-in-delay-1">Saia do ciclo 'vende-entrega-vende' e construa uma esteira de lucro mensal para sua consultoria</p>
-        <div class="fade-in fade-in-delay-2">
-          <a href="#form-card" class="btn-cta">QUERO MAIS INFORMAÇÕES →</a>
-        </div>
-      </div>
-    </section>
+        <div class="hero-split">
+          <div class="hero-content">
+            <h1 class="fade-in">
+              TRANSFORME <span class="accent">SUA CONSULTORIA</span> EM UMA MÁQUINA DE RECEITA <span class="accent">RECORRENTE!</span>
+            </h1>
+            <p class="fade-in fade-in-delay-1">Saia do ciclo 'vende-entrega-vende' e construa uma esteira de lucro mensal para sua consultoria</p>
+          </div>
 
-    <!-- ===== FORMULÁRIO ===== -->
-    <section class="form-section" id="formulario">
-      <div class="container">
-        <div class="form-card fade-in" id="form-card">
-          <h3>Dar o próximo passo leva menos de um minuto</h3>
-          <form id="lead-form" method="POST">
-            <div class="form-group">
-              <label for="name">Qual é o seu nome?</label>
-              <input type="text" id="name" name="name" placeholder="Seu nome completo" required autocomplete="name">
+          <div class="hero-form">
+            <div class="form-card fade-in fade-in-delay-2" id="form-card">
+              <h3>Dar o próximo passo leva menos de um minuto</h3>
+              <form id="lead-form" method="POST">
+                <div class="form-group">
+                  <label for="name">Qual é o seu nome?</label>
+                  <input type="text" id="name" name="name" placeholder="Seu nome completo" required autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Qual o seu e-mail corporativo?</label>
+                  <input type="email" id="email" name="email" placeholder="seu@empresa.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Qual o seu telefone?</label>
+                  <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required autocomplete="tel">
+                </div>
+
+                <div class="form-group">
+                  <label for="company">Nome da empresa</label>
+                  <input type="text" id="company" name="company" placeholder="Nome da sua empresa" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="clients">Quantos clientes você atende hoje?</label>
+                  <select id="clients" name="clients" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="1-5">1 a 5</option>
+                    <option value="6-15">6 a 15</option>
+                    <option value="16-30">16 a 30</option>
+                    <option value="31-50">31 a 50</option>
+                    <option value="50+">Mais de 50</option>
+                  </select>
+                </div>
+
+                <!-- UTMs ocultas -->
+                <input type="hidden" name="utm_source" data-field-id="utm_source">
+                <input type="hidden" name="utm_medium" data-field-id="utm_medium">
+                <input type="hidden" name="utm_campaign" data-field-id="utm_campaign">
+                <input type="hidden" name="utm_content" data-field-id="utm_content">
+                <input type="hidden" name="utm_term" data-field-id="utm_term">
+
+                <!-- Click IDs ocultos -->
+                <input type="hidden" name="gclid" data-field-id="gclid">
+                <input type="hidden" name="fbclid" data-field-id="fbclid">
+                <input type="hidden" name="gbraid" data-field-id="gbraid">
+                <input type="hidden" name="wbraid" data-field-id="wbraid">
+                <input type="hidden" name="ttclid" data-field-id="ttclid">
+                <input type="hidden" name="gad_campaignid" data-field-id="gad_campaignid">
+                <input type="hidden" name="gad_source" data-field-id="gad_source">
+                <input type="hidden" name="msclkid" data-field-id="msclkid">
+                <input type="hidden" name="li_fat_id" data-field-id="li_fat_id">
+                <input type="hidden" name="sck" data-field-id="sck">
+
+                <!-- Dados de sessão -->
+                <input type="hidden" name="session_id" id="hidden_session_id">
+                <input type="hidden" name="landing_page" data-field-id="landing_page">
+                <input type="hidden" name="origin_page" data-field-id="origin_page">
+                <input type="hidden" name="session_attributes_encoded" data-field-id="session_attributes_encoded">
+
+                <button type="submit" class="btn-submit">RECEBER MAIS INFORMAÇÕES</button>
+              </form>
             </div>
-
-            <div class="form-group">
-              <label for="email">Qual o seu e-mail corporativo?</label>
-              <input type="email" id="email" name="email" placeholder="seu@empresa.com" required autocomplete="email">
-            </div>
-
-            <div class="form-group">
-              <label for="phone">Qual o seu telefone?</label>
-              <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required autocomplete="tel">
-            </div>
-
-            <div class="form-group">
-              <label for="company">Nome da empresa</label>
-              <input type="text" id="company" name="company" placeholder="Nome da sua empresa" required>
-            </div>
-
-            <div class="form-group">
-              <label for="clients">Quantos clientes você atende hoje?</label>
-              <select id="clients" name="clients" required>
-                <option value="" disabled selected>Selecione</option>
-                <option value="1-5">1 a 5</option>
-                <option value="6-15">6 a 15</option>
-                <option value="16-30">16 a 30</option>
-                <option value="31-50">31 a 50</option>
-                <option value="50+">Mais de 50</option>
-              </select>
-            </div>
-
-            <!-- UTMs ocultas -->
-            <input type="hidden" name="utm_source" data-field-id="utm_source">
-            <input type="hidden" name="utm_medium" data-field-id="utm_medium">
-            <input type="hidden" name="utm_campaign" data-field-id="utm_campaign">
-            <input type="hidden" name="utm_content" data-field-id="utm_content">
-            <input type="hidden" name="utm_term" data-field-id="utm_term">
-
-            <!-- Click IDs ocultos -->
-            <input type="hidden" name="gclid" data-field-id="gclid">
-            <input type="hidden" name="fbclid" data-field-id="fbclid">
-            <input type="hidden" name="gbraid" data-field-id="gbraid">
-            <input type="hidden" name="wbraid" data-field-id="wbraid">
-            <input type="hidden" name="ttclid" data-field-id="ttclid">
-            <input type="hidden" name="gad_campaignid" data-field-id="gad_campaignid">
-            <input type="hidden" name="gad_source" data-field-id="gad_source">
-            <input type="hidden" name="msclkid" data-field-id="msclkid">
-            <input type="hidden" name="li_fat_id" data-field-id="li_fat_id">
-            <input type="hidden" name="sck" data-field-id="sck">
-
-            <!-- Dados de sessão -->
-            <input type="hidden" name="session_id" id="hidden_session_id">
-            <input type="hidden" name="landing_page" data-field-id="landing_page">
-            <input type="hidden" name="origin_page" data-field-id="origin_page">
-            <input type="hidden" name="session_attributes_encoded" data-field-id="session_attributes_encoded">
-
-            <button type="submit" class="btn-submit">RECEBER MAIS INFORMAÇÕES</button>
-          </form>
+          </div>
         </div>
       </div>
     </section>
