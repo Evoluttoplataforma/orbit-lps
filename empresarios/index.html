@@ -1078,14 +1078,21 @@
                   </select>
                 </div>
 
-                <!-- UTMs ocultas -->
+                <!-- UTMs last-touch -->
                 <input type="hidden" name="utm_source" data-field-id="utm_source">
                 <input type="hidden" name="utm_medium" data-field-id="utm_medium">
                 <input type="hidden" name="utm_campaign" data-field-id="utm_campaign">
                 <input type="hidden" name="utm_content" data-field-id="utm_content">
                 <input type="hidden" name="utm_term" data-field-id="utm_term">
 
-                <!-- Click IDs ocultos -->
+                <!-- UTMs first-touch -->
+                <input type="hidden" name="ft_utm_source" data-field-id="ft_utm_source">
+                <input type="hidden" name="ft_utm_medium" data-field-id="ft_utm_medium">
+                <input type="hidden" name="ft_utm_campaign" data-field-id="ft_utm_campaign">
+                <input type="hidden" name="ft_utm_content" data-field-id="ft_utm_content">
+                <input type="hidden" name="ft_utm_term" data-field-id="ft_utm_term">
+
+                <!-- Click IDs -->
                 <input type="hidden" name="gclid" data-field-id="gclid">
                 <input type="hidden" name="fbclid" data-field-id="fbclid">
                 <input type="hidden" name="gbraid" data-field-id="gbraid">
@@ -1097,10 +1104,15 @@
                 <input type="hidden" name="li_fat_id" data-field-id="li_fat_id">
                 <input type="hidden" name="sck" data-field-id="sck">
 
+                <!-- Facebook cookies -->
+                <input type="hidden" name="fbc" data-field-id="fbc">
+                <input type="hidden" name="fbp" data-field-id="fbp">
+
                 <!-- Dados de sessão -->
                 <input type="hidden" name="session_id" id="hidden_session_id">
                 <input type="hidden" name="landing_page" data-field-id="landing_page">
-                <input type="hidden" name="origin_page" data-field-id="origin_page">
+                <input type="hidden" name="originPage" data-field-id="originPage">
+                <input type="hidden" name="ref" data-field-id="ref">
                 <input type="hidden" name="session_attributes_encoded" data-field-id="session_attributes_encoded">
 
                 <button type="submit" class="btn-submit">RECEBER MAIS INFORMAÇÕES</button>
@@ -1373,14 +1385,15 @@
       'github.com':        { utm_source: 'github',       utm_medium: 'referral' }
     };
 
-    // ── 1. UTMs da URL — first touch ─────────────────────────────────
+    // ── 1. UTMs — first touch + last touch ─────────────────────────────
 
     var hasUtmInUrl = utms.some(function(p) { return !!getParam(p); });
 
     if (hasUtmInUrl) {
       utms.forEach(function(p) {
         var val = getParam(p) || '';
-        setCookieFirstTouch(p, val);
+        setCookieFirstTouch('ft_' + p, val);
+        setCookie(p, val);
       });
     } else {
       var referrer = document.referrer || '';
@@ -1389,7 +1402,8 @@
           if (referrer.indexOf(domain) !== -1) {
             var map = referrerMap[domain];
             utms.forEach(function(p) {
-              setCookieFirstTouch(p, map[p] || '');
+              setCookieFirstTouch('ft_' + p, map[p] || '');
+              setCookie(p, map[p] || '');
             });
             break;
           }
@@ -1397,19 +1411,30 @@
       }
     }
 
-    // ── 2. Click params — first touch ────────────────────────────────
+    // ── 2. Click params — first touch + last touch ──────────────────
 
     clicks.forEach(function(p) {
       var val = getParam(p);
-      if (val) setCookieFirstTouch(p, val);
+      if (val) {
+        setCookieFirstTouch(p, val);
+        setCookie(p, val);
+      }
     });
 
-    // ── 3. Gera _fbc se veio fbclid ──────────────────────────────────
+    // ── 3. Facebook cookies (_fbc / _fbp) ───────────────────────────
 
     var fbclid = getParam('fbclid');
     if (fbclid && !getCookie('_fbc')) {
       setCookie('_fbc', 'fb.1.' + Date.now() + '.' + fbclid);
     }
+
+    // Lê _fbc e _fbp de cookies do browser (set pelo Pixel)
+    function getBrowserCookie(name) {
+      var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : '';
+    }
+    var fbcValue = getBrowserCookie('_fbc') || getCookie('_fbc') || '';
+    var fbpValue = getBrowserCookie('_fbp') || '';
 
     // ── 4. First visit, landing page, origin page ─────────────────────
 
@@ -1462,6 +1487,7 @@
 
     // ── 8. Preenche hidden inputs do form ────────────────────────────
 
+    // Last-touch UTMs + click IDs
     utms.concat(clicks).forEach(function(p) {
       var val = getCookie(p);
       if (!val) return;
@@ -1470,15 +1496,39 @@
       ).forEach(function(f) { f.value = val; });
     });
 
+    // First-touch UTMs (ft_utm_*)
+    utms.forEach(function(p) {
+      var val = getCookie('ft_' + p);
+      if (!val) return;
+      document.querySelectorAll(
+        'input[data-field-id="ft_' + p + '"]'
+      ).forEach(function(f) { f.value = val; });
+    });
+
+    // Facebook cookies
+    var fbcInput = document.querySelector('input[data-field-id="fbc"]');
+    if (fbcInput) fbcInput.value = fbcValue;
+
+    var fbpInput = document.querySelector('input[data-field-id="fbp"]');
+    if (fbpInput) fbpInput.value = fbpValue;
+
+    // Session ID
     var sessionIdInput = document.getElementById('hidden_session_id');
     if (sessionIdInput) sessionIdInput.value = sessionId;
 
+    // Landing page
     var lpInput = document.querySelector('input[data-field-id="landing_page"]');
     if (lpInput) lpInput.value = getCookie('landing_page') || window.location.href;
 
-    var opInput = document.querySelector('input[data-field-id="origin_page"]');
+    // Origin page
+    var opInput = document.querySelector('input[data-field-id="originPage"]');
     if (opInput) opInput.value = getCookie('origin_page') || document.referrer || '';
 
+    // Ref
+    var refInput = document.querySelector('input[data-field-id="ref"]');
+    if (refInput) refInput.value = getCookie('ref') || getParam('ref') || '';
+
+    // Session attributes encoded
     var saeInput = document.querySelector('input[data-field-id="session_attributes_encoded"]');
     if (saeInput) saeInput.value = getCookie('session_attributes_encoded') || '';
 
