@@ -386,7 +386,8 @@
 
     .audience-card {
       background: #f8f8f8; border: 1px solid #e8e8e8;
-      border-radius: var(--radius-lg); padding: 28px 24px;
+      border-radius: var(--radius-lg); padding: 0;
+      overflow: hidden;
       transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
     }
 
@@ -395,8 +396,16 @@
       box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     }
 
+    .audience-card .card-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+    }
+
+    .audience-card .card-body {
+      padding: 20px 24px;
+    }
+
     .audience-card .card-emoji {
-      font-size: 32px; margin-bottom: 16px; display: block;
+      font-size: 20px; display: inline;
     }
 
     .audience-card p {
@@ -786,28 +795,40 @@
 
         <div class="audience-grid">
           <div class="audience-card fade-in fade-in-delay-1">
-            <span class="card-emoji">🤝</span>
-            <p>Se você vende projetos pontuais e perde o cliente (e o dinheiro) assim que a entrega termina.</p>
+            <img class="card-img" src="projetos.avif" alt="Projetos pontuais" loading="lazy">
+            <div class="card-body">
+              <p><span class="card-emoji">🤝</span> <strong>Se você vende projetos pontuais</strong> e perde o cliente (e o dinheiro) assim que a entrega termina.</p>
+            </div>
           </div>
           <div class="audience-card fade-in fade-in-delay-2">
-            <span class="card-emoji">💸</span>
-            <p>Você vê outros consultores com recorrência e pensa que eles têm "sorte"</p>
+            <img class="card-img" src="recorrencia.avif" alt="Consultores com recorrência" loading="lazy">
+            <div class="card-body">
+              <p><span class="card-emoji">💸</span> <strong>Você vê outros consultores com recorrência</strong> e pensa que eles têm "sorte"</p>
+            </div>
           </div>
           <div class="audience-card fade-in fade-in-delay-3">
-            <span class="card-emoji">📢</span>
-            <p>Você depende apenas de indicação e não tem um processo comercial que traz novos clientes todo mês.</p>
+            <div class="card-img" style="width: 100%; aspect-ratio: 4/3; background: #e8e8e8; display: flex; align-items: center; justify-content: center; color: #999; font-size: 13px;">Imagem pendente</div>
+            <div class="card-body">
+              <p><span class="card-emoji">📢</span> <strong>Você depende apenas de indicação</strong> e não tem um processo comercial que traz novos clientes todo mês.</p>
+            </div>
           </div>
           <div class="audience-card fade-in fade-in-delay-4">
-            <span class="card-emoji">🤡</span>
-            <p>Você sente que virou "operacional" do seu cliente, em vez de ser quem ele respeita.</p>
+            <img class="card-img" src="operacional.avif" alt="Virou operacional" loading="lazy">
+            <div class="card-body">
+              <p><span class="card-emoji">🤡</span> <strong>Você sente que virou "operacional"</strong> do seu cliente, em vez de ser quem ele respeita.</p>
+            </div>
           </div>
           <div class="audience-card fade-in fade-in-delay-5">
-            <span class="card-emoji">⏰</span>
-            <p>Se você trabalha e não tem tempo para escalar porque vive preso em planilhas e reuniões.</p>
+            <img class="card-img" src="trabalho.avif" alt="Preso em planilhas" loading="lazy">
+            <div class="card-body">
+              <p><span class="card-emoji">⏰</span> <strong>Se você trabalha e não tem tempo</strong> para escalar porque vive preso em planilhas e reuniões.</p>
+            </div>
           </div>
           <div class="audience-card fade-in fade-in-delay-6">
-            <span class="card-emoji">🎢</span>
-            <p>Você vive no sobe e desce do faturamento, nunca sabe quanto vai entrar no próximo mês</p>
+            <img class="card-img" src="vive.avif" alt="Sobe e desce do faturamento" loading="lazy">
+            <div class="card-body">
+              <p><span class="card-emoji">🎢</span> <strong>Você vive no sobe e desce do faturamento,</strong> nunca sabe quanto vai entrar no próximo mês</p>
+            </div>
           </div>
         </div>
 
