@@ -563,7 +563,49 @@
     /* ===== ADIVINHAR SECTION ===== */
     .adivinhar {
       padding: var(--section-py-lg) 0;
+    }
+
+    .adivinhar-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .adivinhar-text {
       text-align: center;
+    }
+
+    .adivinhar-image {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .adivinhar-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 960px) {
+      .adivinhar-grid {
+        flex-direction: row;
+        gap: 60px;
+      }
+
+      .adivinhar-text {
+        flex: 1;
+        text-align: left;
+      }
+
+      .adivinhar-image {
+        flex: 1;
+        max-width: none;
+      }
     }
 
     .adivinhar h2 {
@@ -575,7 +617,7 @@
     .adivinhar p {
       font-size: clamp(16px, 2vw, 20px);
       color: var(--text-muted); line-height: 1.7;
-      max-width: 700px; margin: 0 auto;
+      max-width: 700px;
     }
 
     .adivinhar p .accent { color: var(--primary); }
@@ -722,9 +764,17 @@
     <!-- ===== ADIVINHAR ===== -->
     <section class="adivinhar fade-in">
       <div class="container">
-        <h2>Deixa eu adivinhar:</h2>
-        <p>Você entrega o valor, mas quem fica com a <span class="accent">recorrência</span>?</p>
-        <p style="margin-top: 16px; font-size: clamp(18px, 2.5vw, 24px); color: var(--text-secondary);">Pare de zerar seu faturamento toda vez que um contrato termina 👀</p>
+        <div class="adivinhar-grid">
+          <div class="adivinhar-text">
+            <h2>Deixa eu adivinhar:</h2>
+            <p>Você entrega o valor, mas quem fica com a <span class="accent">recorrência</span>?</p>
+            <p style="margin-top: 16px; font-size: clamp(18px, 2.5vw, 24px); color: var(--text-secondary);">Pare de zerar seu faturamento toda vez que um contrato termina 👀</p>
+          </div>
+          <div class="adivinhar-image">
+            <!-- Placeholder: envie a imagem para substituir -->
+            <div style="width: 100%; aspect-ratio: 4/3; background: rgba(255,255,255,0.05); border-radius: 16px; border: 2px dashed rgba(253,183,63,0.3); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 14px;">Imagem aqui</div>
+          </div>
+        </div>
       </div>
     </section>
 
