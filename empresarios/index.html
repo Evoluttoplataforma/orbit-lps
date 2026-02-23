@@ -166,8 +166,8 @@
     }
 
     .navbar-cta {
-      padding: 12px 24px;
-      font-size: 14px;
+      padding: 10px 16px;
+      font-size: 13px;
       font-weight: 600;
       color: #000;
       background: var(--cta-green);
@@ -176,10 +176,10 @@
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
       text-decoration: none;
+      display: inline-flex;
       opacity: 0;
       transform: translateY(-8px);
       pointer-events: none;
-      display: none;
     }
 
     .navbar-cta.visible {
@@ -195,7 +195,8 @@
 
     @media (min-width: 768px) {
       .navbar-cta {
-        display: inline-flex;
+        padding: 12px 24px;
+        font-size: 14px;
       }
     }
 
@@ -312,6 +313,7 @@
       margin: 0 auto;
       -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
+      scroll-margin-top: 80px;
     }
 
     .form-card h3 {
@@ -1010,7 +1012,7 @@
         <span class="navbar-logo-text"><span>Orbit</span> Gestão</span>
         <span class="navbar-badge">Líder em Gestão de Processos</span>
       </div>
-      <a href="#formulario" class="navbar-cta">Quero mais informações</a>
+      <a href="#form-card" class="navbar-cta">Quero mais informações</a>
     </div>
   </nav>
 
@@ -1028,7 +1030,7 @@
           </div>
 
           <div class="hero-form">
-            <div class="form-card fade-in fade-in-delay-2">
+            <div class="form-card fade-in fade-in-delay-2" id="form-card">
               <h3>Dar o próximo passo leva menos de um minuto</h3>
               <form id="lead-form" method="POST">
                 <div class="form-group">
