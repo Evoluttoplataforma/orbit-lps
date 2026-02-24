@@ -135,30 +135,15 @@
     }
 
     .navbar-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center;
     }
 
     .navbar-logo img {
-      height: 28px; width: 28px; border-radius: 50%;
-    }
-
-    .navbar-logo-text {
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    .navbar-logo-text span {
-      color: var(--primary);
+      height: 36px; object-fit: contain;
     }
 
     @media (min-width: 768px) {
-      .navbar-logo { gap: 12px; }
-      .navbar-logo img { height: 32px; width: 32px; }
-      .navbar-logo-text { font-size: 22px; }
+      .navbar-logo img { height: 44px; }
     }
 
     .navbar-badge {
@@ -1020,8 +1005,7 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-logo">
-        <img src="/logo-orbit.png" alt="Orbit">
-        <span class="navbar-logo-text"><span>Orbit</span> Gestão</span>
+        <img src="./logo-orbit-gestao.jpg" alt="Orbit Gestão">
         <span class="navbar-badge">Líder em Gestão de Processos</span>
       </div>
       <a href="#form-card" class="navbar-cta">Quero mais informações</a>

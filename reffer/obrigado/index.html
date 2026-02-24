@@ -118,12 +118,17 @@
       display: flex; align-items: center; justify-content: center;
     }
 
-    .navbar-logo-text {
-      font-size: 22px; font-weight: 800;
-      letter-spacing: -0.02em; color: var(--text);
+    .navbar-logo {
+      display: flex; align-items: center;
     }
 
-    .navbar-logo-text span { color: var(--primary); }
+    .navbar-logo img {
+      height: 36px; object-fit: contain;
+    }
+
+    @media (min-width: 768px) {
+      .navbar-logo img { height: 44px; }
+    }
 
     /* ===== ANIMATED CHECK ===== */
     .check-container {
@@ -443,7 +448,9 @@
 
   <nav class="navbar">
     <div class="container">
-      <span class="navbar-logo-text"><span>Orbit</span> Gestão</span>
+      <div class="navbar-logo">
+        <img src="../logo-orbit-gestao.jpg" alt="Orbit Gestão">
+      </div>
     </div>
   </nav>
 
